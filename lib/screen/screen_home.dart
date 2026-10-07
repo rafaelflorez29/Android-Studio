@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:list_app/screen/screen_descripcion.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -10,18 +11,18 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  final listaMotos = [
+  final List<Map<String, String>> listaMotos = [
     {"nombre": "YAMAHA MT-07", "imagen": "images/MT-07.webp"},
     {"nombre": "YAMAHA MT-09", "imagen": "images/MT-09.webp"},
     {"nombre": "KAWAZAKI Z-900", "imagen": "images/Z-900.webp"},
-    {"nombre": "KAWAZAKI ZH2", "imagen": ""},
-    {"nombre": "KAWAZAKI Z-1000", "imagen": ""},
-    {"nombre": "KAWAZAKI H2R", "imagen": ""},
-    {"nombre": "BMW S1000RR", "imagen": ""},
-    {"nombre": "BMW M1000RR", "imagen": "https://imgs.search.brave.com/A-Lom5z6LScQsddBdqiF71RKeY607x7LK8RhUJoRNvg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/Y2Fyb2xlbmFzaC5j/b20vaW1hZ2VzL2xp/YnJhcmllc3Byb3Zp/ZGVyNi9ibG9nLXBv/c3RzL2Jtdy1tMTAw/MHJyMi5qcGc_c2Z2/cnNuPWMxMjBjZGIz/XzE"},
-    {"nombre": "DUCATI PANIGALE", "imagen": "https://imgs.search.brave.com/5RgL1WJF2ObcGNlHZLm9KQO8mDZUBtKU24xv7cUSEBE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zMS5j/ZG4uYXV0b2V2b2x1/dGlvbi5jb20vaW1h/Z2VzL21vdG9fbW9k/ZWxzL0RVQ0FUSV9Q/YW5pZ2FsZS1WMi0y/MDIzX21haW4uanBn"},
-    {"nombre": "KAWAZAKI NINJA Z-10", "imagen": "https://imgs.search.brave.com/M6f9a8byueFraBr6KYymJahQRrWUR9JNRWLUnejir8Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bGF6ZXJoZWxtZXRz/Lm5ldC93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMy8wMy9OaW5q/YS1aWC0xMFItbGlm/ZXN0eWxlLTEuanBn"},
-    {"nombre": "DUCATI MULTIESTRADA", "imagen": "https://imgs.search.brave.com/5_2pj-RlzW3q-q-sU3SELxocwRFI-RHYCf_LDM6A_nI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4t/ZmFzdGx5Lm1vdG9y/Y3ljbGUuY29tL21l/ZGlhLzIwMjQvMDkv/MTkvMTYyOTEvcy1w/b3N0LmpwZz9zaXpl/PTcyMHg4NDUmbm9j/cm9wPTE"},
+    {"nombre": "KAWAZAKI ZH2", "imagen": "images/ZH2.webp"},
+    {"nombre": "KAWAZAKI Z-1000", "imagen": "images/Z-1000.webp"},
+    {"nombre": "KAWAZAKI H2R", "imagen": "images/H2R.webp"},
+    {"nombre": "BMW S1000RR", "imagen": "images/S1000RR.webp"},
+    {"nombre": "BMW M1000RR", "imagen": "images/S1000RR.webp"},
+    {"nombre": "DUCATI PANIGALE", "imagen": "images/DUCATI-PANIGALE.webp"},
+    {"nombre": "KAWAZAKI NINJA Z-10", "imagen": "images/NINJA-X-10.webp"},
+    {"nombre": "DUCATI MULTIESTRADA", "imagen": "images/MULTIESTRADA.webp"},
   ];
 
   @override
@@ -69,18 +70,48 @@ class _ScreenHomeState extends State<ScreenHome> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text("Moto ${listaMoto["nombre"]}", style: TextStyle(color: Colors.white),),
-                    content: Image.asset("${listaMoto["imagen"]}",height: 100,fit: BoxFit.contain),
+                    title: Text(
+                      "Moto ${listaMoto["nombre"]}",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: Image.asset(
+                      "${listaMoto["imagen"]}",
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
+                    actionsAlignment: MainAxisAlignment.spaceBetween,
                     actions: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ScreenDescripcion(listMotos: listaMotos),
+                            )
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add_circle_outline_rounded,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            Colors.black54,
+                          ),
+                        ),
+                      ),
                       IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.cancel_outlined,color: Colors.white,),
+                        icon: Icon(Icons.cancel_outlined, color: Colors.white),
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            Colors.black54,
+                          ),
+                        ),
                       ),
                     ],
                     backgroundColor: Colors.grey,
-
                   ),
                 );
               },

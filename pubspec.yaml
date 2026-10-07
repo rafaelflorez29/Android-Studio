@@ -53,6 +53,16 @@ dev_dependencies:
 flutter:
   assets:
     - images/MT-09.webp
+    - images/DUCATI-PANIGALE.webp
+    - images/H2R.webp
+    - images/M-1000RR.webp
+    - images/MT-07.webp
+    - images/MULTIESTRADA.webp
+    - images/NINJA-X-10.webp
+    - images/S1000RR.webp
+    - images/Z-900.webp
+    - images/Z-1000.webp
+    - images/ZH2.webp
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
